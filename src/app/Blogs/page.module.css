@@ -1,0 +1,18 @@
+.blogs {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.heading {
+    font-size: 35px;
+    color: rgba(41, 23, 157, 0.71);
+    font-weight: bold;
+    margin: 3rem 0 1rem 2rem
+}
+
+.paragraph {
+    margin: 1rem 0 3rem 2rem ;
+    font-size: 18px;
+}
