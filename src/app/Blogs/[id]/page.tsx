@@ -30,17 +30,16 @@ const getBlog = async (id: number) => {
     notFound();
   }
 
-  const data: BlogDetailsProps = await res.json();
-  return data;
+  return res.json();
 };
 
-const BlogDetails = async ({ params }: { params: { id: number } }) => {
-  const blog = await getBlog(params.id);
+const BlogDetails = async ({ params: { id } }: { params: { id: number } }) => {
+  const blog: BlogDetailsProps = await getBlog(id);
 
   return (
     <main className={style.card}>
       <nav>
-        <h2>Blog Details :</h2>
+        <h2>Blog Details for id : {id}</h2>
       </nav>
       <h3 className={style.heading}>{blog.title}</h3>
       <p className={style.content}>{blog.content}</p>
@@ -48,4 +47,5 @@ const BlogDetails = async ({ params }: { params: { id: number } }) => {
     </main>
   );
 };
+
 export default BlogDetails;
