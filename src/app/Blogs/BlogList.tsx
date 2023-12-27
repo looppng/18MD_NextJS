@@ -1,40 +1,39 @@
 import style from "./bloglist.module.css";
 import Link from "next/link";
 const getBlogs = async () => {
-  const res = await fetch("http://localhost:3002/blogs", {
-    next: {
-      revalidate: 0,
-    },
-  });
+  try {
+    const res = await fetch("http://localhost:3000/api/blogs", {
+      cache: "no-store",
+    });
 
-  if (!res.ok) {
-    throw new Error("Failed to fetch data");
+    if (!res.ok) {
+      throw new Error("Failed to fetch blogs");
+    }
+
+    return res.json();
+  } catch (error) {
+    console.log("Error loading blogs: ", error);
   }
-
-  const data = await res.json();
-  const blogs = data.results;
-  return blogs;
 };
 
-export type blogType = {
-  id: number;
+export type BlogType = {
+  _id: number;
   title: string;
   content: string;
-  tag: string;
 };
 
 const BlogList = async () => {
-  const blogs: [] = await getBlogs();
+  const { blogs } = await getBlogs();
 
   return (
     <>
-      {blogs.map((blog: blogType) => (
-        <div key={blog.id} className={style.card}>
-          <Link href={`/Blogs/${blog.id}`} className={style.link}>
+      {blogs.map((blog: BlogType) => (
+        <div key={blog._id} className={style.card}>
+          <Link href={`/Blogs/${blog._id}`} className={style.link}>
             <h3 className={style.heading}>{blog.title}</h3>
             <p className={style.content}>{blog.content}</p>
           </Link>
-          <span className={style.pill}>{blog.tag}</span>
+          {/*<span className={style.pill}>{blog.tag}</span>*/}
         </div>
       ))}
       {blogs.length === 0 && <p>There are no available blogs...</p>}

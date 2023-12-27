@@ -6,11 +6,20 @@
     justify-content: flex-start;
     gap: 0.5rem;
     font-size: 1.3rem;
+    border-radius: 0 0 10px 10px;
 }
 
 .link {
     text-decoration: none;
     color: rgba(14, 13, 13, 0.95);
+    font-weight: bold;
+    font-size: 22px;
+    transition: 0.5s;
+}
+
+.link:hover {
+    opacity: 0.6;
+    color: white;
 }
 
 .image {
@@ -24,4 +33,20 @@
     font-size: 20px;
     color: white;
     margin: 4px
+}
+
+
+.button {
+    margin-left: auto;
+    margin-right: 1rem;
+    border-radius: 3px;
+    border: none;
+    padding: 5px 20px;
+    transition: 0.5s;
+    background-color: #b1b1f3;
+    color: black;
+}
+
+.button:hover {
+    color: white;
 }

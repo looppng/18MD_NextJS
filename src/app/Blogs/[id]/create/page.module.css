@@ -1,0 +1,12 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem
+}
+
+.heading {
+    font-size: 25px;
+    color: rgba(41, 23, 157, 0.71);
+    font-weight: bold;
+    margin-top: 2rem;
+}

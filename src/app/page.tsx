@@ -1,11 +1,10 @@
-import style from "./page.module.css";
 import Link from "next/link";
 export default function Home() {
   return (
     <main>
       <div>
-        <h2 className={style.heading}>Welcome to my blogs website</h2>
-        <p className={style.paragraph}>
+        <h2 className="heading">Welcome to my blogs website</h2>
+        <p className="paragraph">
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium,
           aliquid at cum dolor ea iste libero maiores molestias nam nulla,
           perferendis quibusdam, quis quod quos ratione rem reprehenderit
@@ -13,7 +12,7 @@ export default function Home() {
           iusto nihil quod velit. Animi assumenda delectus deserunt dolorem
           doloremque obcaecati, possimus tenetur.
         </p>
-        <div className={style.action}>
+        <div className="action">
           <Link href={"/Blogs"}>
             <button className="btn btn-primary">View Blogs</button>
           </Link>
@@ -21,8 +20,8 @@ export default function Home() {
       </div>
 
       <div>
-        <h2 className={style.heading}>Updates from bloggers</h2>
-        <p className={style.paragraph}>
+        <h2 className="heading">Updates from bloggers</h2>
+        <p className="paragraph">
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium,
           aliquid at cum dolor ea iste libero maiores molestias nam nulla,
           perferendis quibusdam, quis quod quos ratione rem reprehenderit
@@ -30,7 +29,7 @@ export default function Home() {
           iusto nihil quod velit. Animi assumenda delectus deserunt dolorem
           doloremque obcaecati, possimus tenetur.
         </p>
-        <p className={style.paragraph}>
+        <p className="paragraph">
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium,
           aliquid at cum dolor ea iste libero maiores molestias nam nulla,
           perferendis quibusdam, quis quod quos ratione rem reprehenderit
@@ -38,7 +37,7 @@ export default function Home() {
           iusto nihil quod velit. Animi assumenda delectus deserunt dolorem
           doloremque obcaecati, possimus tenetur.
         </p>
-        <p className={style.paragraph}>
+        <p className="paragraph">
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium,
           aliquid at cum dolor ea iste libero maiores molestias nam nulla,
           perferendis quibusdam, quis quod quos ratione rem reprehenderit
