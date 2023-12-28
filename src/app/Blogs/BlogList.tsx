@@ -20,6 +20,7 @@ export type BlogType = {
   _id: number;
   title: string;
   content: string;
+  tag: string;
 };
 
 const BlogList = async () => {
@@ -33,7 +34,9 @@ const BlogList = async () => {
             <h3 className={style.heading}>{blog.title}</h3>
             <p className={style.content}>{blog.content}</p>
           </Link>
-          {/*<span className={style.pill}>{blog.tag}</span>*/}
+          <Link href={`/Blogs/Tags/${blog.tag}`}>
+            <span className={style.pill}>{blog.tag}</span>
+          </Link>
         </div>
       ))}
       {blogs.length === 0 && <p>There are no available blogs...</p>}

@@ -4,6 +4,7 @@ const blogSchema = new Schema(
   {
     title: String,
     content: String,
+    tag: String,
   },
   {
     timestamps: true,

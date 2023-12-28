@@ -10,7 +10,6 @@ const CreateForm = () => {
 
   const [author, setAuthor] = useState("");
   const [comment, setComment] = useState("");
-  const [tag, setTag] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e) => {
@@ -20,7 +19,6 @@ const CreateForm = () => {
     const submitComment = {
       author,
       comment,
-      tag,
     };
 
     const res = await fetch(`http://localhost:3002/blogs/${id}/comments`, {
@@ -39,7 +37,7 @@ const CreateForm = () => {
     <div className={style.wrapper}>
       <form onSubmit={handleSubmit} className={style.form}>
         <div className="row">
-          <div className="col-12">
+          <div className="col-10">
             <div className="col-4">
               <label className={style.label}>
                 <span>Author:</span>
@@ -65,20 +63,6 @@ const CreateForm = () => {
                 onChange={(e) => setComment(e.target.value)}
                 value={comment}
                 className={style.textarea}
-              />
-            </div>
-            <div className="col-4">
-              <label className={style.label}>
-                <span>Tag:</span>
-              </label>
-            </div>
-            <div className="col-8">
-              <input
-                type="text"
-                required
-                onChange={(e) => setTag(e.target.value)}
-                value={tag}
-                className={style.input}
               />
             </div>
             <div className="row">
