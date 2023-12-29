@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import React from "react";
+import Provider from "@/app/components/Provider";
 
 // Components
 import Navbar from "@/app/components/Navbar";
@@ -24,10 +25,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={ubuntu.className} className="bg-light">
-        <div className="container">
-          <Navbar />
-          {children}
-        </div>
+        <main className="container">
+          <Provider>
+            <Navbar />
+            <section>{children}</section>
+          </Provider>
+        </main>
       </body>
     </html>
   );

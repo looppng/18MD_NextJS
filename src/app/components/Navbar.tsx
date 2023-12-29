@@ -2,7 +2,6 @@ import Link from "next/link";
 import style from "./navbar.module.css";
 import Image from "next/image";
 import Logo from "./logo.svg";
-import LoginBtn from "@/app/components/login-btn";
 
 const Navbar = () => {
   return (
@@ -24,6 +23,8 @@ const Navbar = () => {
       <Link href={"/Blogs"} className={style.link}>
         Blogs
       </Link>
+      <Link href={"/protected/server"}>ServerPage</Link>
+      <Link href={"/protected/client"}>ClientPage</Link>
       <button className={style.button}>Sign In</button>
     </nav>
   );

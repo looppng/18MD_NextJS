@@ -1,16 +1,39 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose, { Document } from "mongoose";
 
-const blogSchema = new Schema(
+const blogSchema = new mongoose.Schema(
   {
-    title: String,
-    content: String,
-    tag: String,
+    title: {
+      type: String,
+      required: true,
+    },
+    content: {
+      type: String,
+      required: true,
+    },
+    tag: {
+      type: String,
+    },
   },
   {
     timestamps: true,
   },
 );
-delete mongoose.connection.models["Blog"];
-const Blog = mongoose.model("Blog", blogSchema);
 
-export default Blog;
+export interface IBlog extends Document {
+  _id?: string;
+  title: string;
+  content: string;
+  tag: string;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+let BlogModel: mongoose.Model<IBlog>;
+
+try {
+  BlogModel = mongoose.model<IBlog>("Blog");
+} catch {
+  BlogModel = mongoose.model<IBlog>("Blog", blogSchema);
+}
+
+export default BlogModel;
