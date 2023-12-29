@@ -5,7 +5,7 @@ import style from "./createform.module.css";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
-const CreateForm = () => {
+const CreateForm = ({ blogId }) => {
   const router = useRouter();
 
   const [author, setAuthor] = useState("");
@@ -14,22 +14,23 @@ const CreateForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsLoading(true);
+    setIsLoading(false);
 
     const submitComment = {
-      author,
+      blogId,
       comment,
+      author,
     };
 
-    const res = await fetch(`http://localhost:3002/blogs/${id}/comments`, {
+    const res = await fetch("http://localhost:3000/api/blogs/comments", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(submitComment),
     });
 
     if (res.status === 201) {
+      router.push(`/Blogs/${blogId}`);
       router.refresh();
-      router.push("/blogs");
     }
   };
 
