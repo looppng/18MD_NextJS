@@ -4,7 +4,7 @@ import style from "./createform.module.css";
 
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
-import Button from "@/app/components/Button";
+import Button from "@/app/components/Button/Button";
 
 const CreateForm = ({ blogId }: { blogId: string }) => {
   const router = useRouter();
@@ -15,7 +15,7 @@ const CreateForm = ({ blogId }: { blogId: string }) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsLoading(false);
+    setIsLoading(true);
 
     const submitComment = {
       blogId,
@@ -30,8 +30,14 @@ const CreateForm = ({ blogId }: { blogId: string }) => {
     });
 
     if (res.status === 201) {
+      setAuthor("");
+      setComment("");
+      setIsLoading(false);
+
       router.push(`/Blogs/${blogId}`);
       router.refresh();
+    } else {
+      setIsLoading(false);
     }
   };
 

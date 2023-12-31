@@ -1,7 +1,7 @@
-import style from "@/app/Blogs/bloglist.module.css";
+import style from "@/app/components/BlogList/bloglist.module.css";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import CreateForm from "@/app/Blogs/[id]/create/CreateForm";
+import CreateForm from "@/app/components/CreateForm/CreateForm";
 
 type CommentType = {
   _id: string;

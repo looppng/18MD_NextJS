@@ -1,7 +1,7 @@
 import Link from "next/link";
 import style from "./navbar.module.css";
 import Image from "next/image";
-import Logo from "./logo.svg";
+import Logo from "../../../../public/logo.svg";
 
 const Navbar = () => {
   return (
@@ -17,7 +17,7 @@ const Navbar = () => {
         <h3 className={style.logo}>Logo</h3>
       </div>
 
-      <Link href="/" className={style.link}>
+      <Link href="/public" className={style.link}>
         Home
       </Link>
       <Link href={"/Blogs"} className={style.link}>

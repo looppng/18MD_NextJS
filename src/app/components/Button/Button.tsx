@@ -7,11 +7,9 @@ type ButtonProps = {
   type?: HTMLButtonElement["type"];
   onSubmit?: () => void;
   disabled?: boolean;
-  isLoading?: boolean;
 };
 const Button = ({
   text,
-  isLoading,
   onClick,
   type = "button",
   onSubmit,
