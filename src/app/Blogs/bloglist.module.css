@@ -26,3 +26,23 @@
 .link {
     text-decoration: none;
 }
+
+.comcard {
+    padding: 1rem;
+}
+
+.author {
+    font-size: 22px;
+    color: rgba(41, 23, 157, 0.71);
+}
+
+.comment {
+    font-size: 20px;
+    color: black;
+}
+
+.noComment {
+    font-size: 20px;
+    margin-top: 1rem;
+}
+

@@ -4,7 +4,14 @@ import { NextResponse } from "next/server";
 import { ObjectId } from "mongodb";
 import Comment from "../../../../../models/Comment";
 
-export async function GET(request, { params }) {
+type ParamsType = {
+  id: string;
+};
+
+export async function GET(
+  _request: Request,
+  { params }: { params: ParamsType },
+) {
   const { id } = params;
   await connectMongoDB();
 

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Button from "@/app/components/Button";
 export default function Home() {
   return (
     <main>
@@ -14,7 +15,7 @@ export default function Home() {
         </p>
         <div className="action">
           <Link href={"/Blogs"}>
-            <button className="btn btn-primary">View Blogs</button>
+            <Button text="View Blogs" />
           </Link>
         </div>
       </div>

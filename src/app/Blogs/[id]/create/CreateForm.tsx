@@ -4,15 +4,16 @@ import style from "./createform.module.css";
 
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
+import Button from "@/app/components/Button";
 
-const CreateForm = ({ blogId }) => {
+const CreateForm = ({ blogId }: { blogId: string }) => {
   const router = useRouter();
 
   const [author, setAuthor] = useState("");
   const [comment, setComment] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(false);
 
@@ -68,10 +69,12 @@ const CreateForm = ({ blogId }) => {
             </div>
             <div className="row">
               <div className="col-4 mt-3">
-                <button className="btn btn-primary" disabled={isLoading}>
-                  {isLoading && <span>Adding...</span>}
-                  {!isLoading && <span>Add Comment</span>}
-                </button>
+                <Button
+                  text="Add Comment"
+                  type={"submit"}
+                  disabled={isLoading}
+                  onSubmit={() => handleSubmit}
+                />
               </div>
             </div>
           </div>

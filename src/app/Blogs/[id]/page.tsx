@@ -2,14 +2,6 @@ import style from "@/app/Blogs/bloglist.module.css";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import CreateForm from "@/app/Blogs/[id]/create/CreateForm";
-import { BlogType } from "@/app/Blogs/BlogList";
-
-type BlogDetailsProps = {
-  _id: string;
-  title: string;
-  content: string;
-  tag: string;
-};
 
 type CommentType = {
   _id: string;
@@ -56,13 +48,15 @@ const BlogDetails = async ({ params: { id } }: { params: { id: string } }) => {
         <CreateForm blogId={id} />
       </div>
       {blogInfo.comments.map((com: CommentType) => (
-        <div key={com._id} className={style.card}>
-          <h3 className={style.heading}>{com.author}</h3>
-          <p className={style.content}>{com.comment}</p>
+        <div key={com._id} className={style.comcard}>
+          <h3 className={style.author}>{com.author}</h3>
+          <p className={style.comment}>{com.comment}</p>
         </div>
       ))}
       {blogInfo.comments.length === 0 && (
-        <p>There are no available comments...</p>
+        <p className={style.noComment}>
+          There are no comments yet , you can be the first...
+        </p>
       )}
     </div>
   );
