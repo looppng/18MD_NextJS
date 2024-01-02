@@ -1,8 +1,10 @@
 import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { NextApiHandler } from "next";
+import { loginUser } from "../../../../../libs/services/auth";
+import { IUser } from "../../../../../libs/models/User";
 
-interface Credentials {
+interface CredentialsType {
   email: string;
   password: string;
 }
@@ -13,12 +15,22 @@ export const authOptions: NextAuthOptions = {
       name: "Credentials",
 
       credentials: {
-        username: { label: "Username", type: "text", placeholder: "JSmith" },
+        email: {
+          label: "Email",
+          type: "email",
+          placeholder: "jsmith@example.com",
+        },
         password: { label: "Password", type: "password" },
       },
 
       async authorize(credentials) {
-        const user = { id: "1", name: "J Smith", email: "jsmith@example.com" };
+        const { email, password } = credentials as CredentialsType;
+        // const user = { id: "1", name: "J Smith", email: "" };
+
+        const user = await loginUser({ email, password });
+
+        // if (email !== "jsmith@example.com" || password !== "password") {
+        //   throw Error("Invalid credentials");
 
         if (user) {
           return user;

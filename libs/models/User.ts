@@ -30,6 +30,7 @@ export interface IUser extends Document {
   image: string;
   createdAt?: string;
   updatedAt?: string;
+  isAdmin?: string;
 }
 
 const UserModel: Model<IUser> = models.User || model<IUser>("User", userSchema);

@@ -1,11 +1,13 @@
-import connectMongoDB from "../../../../libs/mongodb";
-import Blog from "../../../../models/blog";
+import connectMongoDB from "../../../../libs/mongo/mongodb";
+import Blog from "../../../../libs/models/blog";
 import { NextResponse } from "next/server";
 
 export const dynamic = "force-dynamic";
 export async function POST(request: Request) {
   const { title, content, tag } = await request.json();
+
   await connectMongoDB();
+
   await Blog.create({ title, content, tag });
   return NextResponse.json({ message: "blog created" }, { status: 201 });
 }

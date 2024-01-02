@@ -22,7 +22,7 @@ const getBlog = async (id: string) => {
     const Datas = await res.json();
 
     const { blog, comments } = Datas;
-    return { blog: blog, comments: comments };
+    return { blog, comments };
   } catch (error) {
     console.log("Error loading blog: ", error);
   }

@@ -2,30 +2,37 @@ import Link from "next/link";
 import style from "./navbar.module.css";
 import Image from "next/image";
 import Logo from "../../../../public/logo.svg";
+import SignInButton from "@/app/components/SignInButton/SignInButton";
 
 const Navbar = () => {
   return (
     <nav className={style.navbar}>
       <div className={style.image}>
-        <Image
-          src={Logo}
-          alt="page logo"
-          width={50}
-          height={50}
-          quality={100}
-        />
-        <h3 className={style.logo}>Logo</h3>
+        <Link href="/">
+          <Image
+            src={Logo}
+            alt="page logo"
+            width={50}
+            height={50}
+            quality={100}
+          />
+        </Link>
       </div>
-
-      <Link href="/public" className={style.link}>
+      <Link href="/" className={style.link}>
         Home
       </Link>
       <Link href={"/Blogs"} className={style.link}>
         Blogs
       </Link>
-      <Link href={"/protected/server"}>ServerPage</Link>
-      <Link href={"/protected/client"}>ClientPage</Link>
-      <button className={style.button}>Sign In</button>
+      <Link href={"/protected/server"} className={style.link}>
+        ServerPage
+      </Link>
+      <Link href={"/protected/client"} className={style.link}>
+        ClientPage
+      </Link>
+      <div className={style.action}>
+        <SignInButton />
+      </div>
     </nav>
   );
 };

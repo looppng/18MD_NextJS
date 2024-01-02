@@ -1,8 +1,8 @@
-import connectMongoDB from "../../../../../libs/mongodb";
-import Blog from "../../../../../models/blog";
+import connectMongoDB from "../../../../../libs/mongo/mongodb";
+import Blog from "../../../../../libs/models/blog";
 import { NextResponse } from "next/server";
 import { ObjectId } from "mongodb";
-import Comment from "../../../../../models/Comment";
+import Comment from "../../../../../libs/models/Comment";
 
 type ParamsType = {
   id: string;

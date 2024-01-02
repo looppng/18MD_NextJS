@@ -14,7 +14,7 @@ const ServerProtectedPage = async () => {
   return (
     <>
       <h1>Server protected page</h1>
-      <p>Hi, {session.user?.username ?? "friend"}</p>
+      <p>Hi, {session?.user.username ?? "friend"}</p>
     </>
   );
 };

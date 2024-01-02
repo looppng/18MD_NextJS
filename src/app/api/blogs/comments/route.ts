@@ -1,5 +1,5 @@
-import connectMongoDB from "../../../../../libs/mongodb";
-import Comment from "../../../../../models/Comment";
+import connectMongoDB from "../../../../../libs/mongo/mongodb";
+import Comment from "../../../../../libs/models/Comment";
 import { NextResponse } from "next/server";
 
 export const dynamic = "force-dynamic";

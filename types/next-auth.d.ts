@@ -1,9 +1,19 @@
-import NextAuth, { DefaultSession } from "next-auth";
-import { IUser } from "../models/User";
+import { DefaultSession } from "next-auth";
+import { IUser } from "../libs/models/User";
 
 declare module "next-auth" {
-  interface Session {
+  export interface Session {
     user: IUser & DefaultSession["user"];
+  }
+
+  export interface User {
+    id?: string;
+    username: string;
+    email: string;
+    image?: string;
+    createdAt: ?string;
+    updatedAt?: string;
+    isAdmin: boolean;
   }
 }
 
