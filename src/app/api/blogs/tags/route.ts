@@ -2,13 +2,12 @@ import connectMongoDB from "../../../../../libs/mongo/mongodb";
 import TagModel from "../../../../../libs/models/Tag";
 import { NextResponse } from "next/server";
 import Tag from "../../../../../libs/models/Tag";
+import Blog from "../../../../../libs/models/Blog";
 
 export async function GET() {
   await connectMongoDB();
-
-  const allTags = await Tag.distinct("tag");
-
-  return NextResponse.json({ tags: allTags });
+  const tags = await Tag.find();
+  return NextResponse.json(tags);
 }
 
 export const dynamic = "force-dynamic";
@@ -19,7 +18,7 @@ export async function POST(request: Request) {
     tag,
   });
   return NextResponse.json(
-    { message: "tag created", tag: createdTag },
+    { message: "Tag created", tag: createdTag },
     { status: 201 },
   );
 }

@@ -20,7 +20,6 @@ const getTag = async (tag: string) => {
 
     const data = await res.json();
     const { blogsWithTag } = data;
-
     return blogsWithTag;
   } catch (error) {
     console.log("Error loading blog: ", error);
@@ -29,7 +28,6 @@ const getTag = async (tag: string) => {
 
 const TagBlogs = async ({ params: { tag } }: { params: { tag: string } }) => {
   const tags = await getTag(tag);
-
   if (!tags) {
     return notFound();
   }

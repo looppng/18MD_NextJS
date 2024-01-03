@@ -24,12 +24,6 @@ const Navbar = () => {
       <Link href={"/Blogs"} className={style.link}>
         Blogs
       </Link>
-      <Link href={"/protected/server"} className={style.link}>
-        ServerPage
-      </Link>
-      <Link href={"/protected/client"} className={style.link}>
-        ClientPage
-      </Link>
       <div className={style.action}>
         <SignInButton />
       </div>

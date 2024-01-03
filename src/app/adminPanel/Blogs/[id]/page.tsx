@@ -1,7 +1,9 @@
+"use client";
+
 import style from "@/app/components/BlogList/bloglist.module.css";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import CreateForm from "@/app/components/CreateForm/CreateForm";
+import DeleteCommentButton from "@/app/components/DeleteButton/DeleteCommentButton";
 
 type CommentType = {
   _id: string;
@@ -45,14 +47,12 @@ const BlogDetails = async ({ params: { id } }: { params: { id: string } }) => {
           <span className={style.pill}>{blogInfo.blog.tag}</span>
         </Link>
       </main>
-      <div>
-        <CreateForm blogId={id} />
-      </div>
       {blogInfo.comments.map((com: CommentType) => (
         <div key={com._id} className={style.comcard}>
           <h3 className={style.author}>{com.author}</h3>
           <p className={style.comment}>{com.comment}</p>
           <p>{new Date(com.createdAt).toLocaleString()}</p>
+          <DeleteCommentButton _id={com._id} />
         </div>
       ))}
       {blogInfo.comments.length === 0 && (

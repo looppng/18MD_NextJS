@@ -1,7 +1,7 @@
 import connectMongoDB from "../../../../../../libs/mongo/mongodb";
-import Blog from "../../../../../../libs/models/blog";
 import { NextResponse } from "next/server";
 import TagModel from "../../../../../../libs/models/Tag";
+import BlogModel from "../../../../../../libs/models/Blog";
 
 type ParamsType = {
   tag: string;
@@ -16,9 +16,21 @@ export async function GET(
   const { tag } = params;
   await connectMongoDB();
 
-  const tagDocument = await TagModel.findOne({ tag });
+  try {
+    const tagDocument = await TagModel.findOne({ tag });
 
-  const blogsWithTag = await Blog.find({ tag: tagDocument.tag });
+    if (!tagDocument) {
+      return NextResponse.json({ message: "Tag not found" }, { status: 404 });
+    }
 
-  return NextResponse.json({ blogsWithTag });
+    const blogsWithTag = await BlogModel.find({ tag: tagDocument.tag });
+
+    return NextResponse.json({ blogsWithTag });
+  } catch (error) {
+    console.error("Error:", error);
+    return NextResponse.json(
+      { message: "Internal server error" },
+      { status: 500 },
+    );
+  }
 }

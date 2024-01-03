@@ -2,6 +2,10 @@ import mongoose, { Document } from "mongoose";
 
 const blogSchema = new mongoose.Schema(
   {
+    image: {
+      type: String,
+      required: false,
+    },
     title: {
       type: String,
       required: true,
@@ -11,8 +15,8 @@ const blogSchema = new mongoose.Schema(
       required: true,
     },
     tag: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Tag",
+      type: String,
+      required: false,
     },
   },
   {
@@ -25,6 +29,7 @@ export interface IBlog extends Document {
   title: string;
   content: string;
   tag: string;
+  image: string;
   createdAt?: string;
   updatedAt?: string;
 }
