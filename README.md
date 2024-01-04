@@ -1,5 +1,15 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## Table of Contents
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+  - [Authentication Setup](#authentication-setup)
+- [Database](#database)
+  - [Data Schema](#data-schema)
+- [API Routes](#api-routes)
+
+
 ## Getting Started
 
 First, run the development server:
@@ -13,24 +23,118 @@ pnpm dev
 # or
 bun dev
 ```
-
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Prerequisites
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- Node.js
+- npm or yarn
+- MongoDB
 
-## Learn More
+### Installation
 
-To learn more about Next.js, take a look at the following resources:
+Clone the repository:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   ```bash
+   git clone https://github.com/looppng/18MD_NextJS
+   cd 18MD_NextJS
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+   npm install
+   npm run dev
+   ```
+
+### Authentication Setup
+
+Local Authentication ( Email and Password )
+
+Create a .env file in the root of your project and add the following:
+
+<details>
+  <summary><strong>Environment Variables</strong></summary>
+
+  ```bash
+  MONGODB_URI=mongodb+srv://egilskalvans2:IqGWfMyjQWIAnzAv@nextblogs.3lzvhoq.mongodb.net/?retryWrites=true&w=majority
+  NEXTAUTH_SECRET="secretkeygoeshere"
+  NEXTAUTH_URL="http://localhost:3000"
+  ```
+</details
+
+Click the "Log In" button in the Navbar to log in using the sample user account.
+To access the admin panel, navigate to /adminPanel. If not authenticated, you will be redirected to the login page.
+
+Sample Admin User
+
+- Username: admin
+- Email: admin@test.com
+- Password: password
+
+## Database
+
+### Data Schema
+
+#### Blogs Collection
+
+- **_id**: ObjectId
+- **title**: String
+- **content**: String
+- **tag**: String
+- **createdAt**: Date
+- **updatedAt**: Date
+
+#### Comments Collection
+
+- **_id**: ObjectId
+- **blogId**: String (reference to Blogs collection)
+- **comment**: String
+- **author**: String
+- **createdAt**: Date
+- **updatedAt**: Date
+
+#### Tags Collection
+
+- **_id**: ObjectId
+- **tag**: String
+
+#### Users Collection
+
+- **_id**: ObjectId
+- **username**: String
+- **password**: String (hashed)
+- **email**: String
+- **image**: String
+- **createdAt**: Date
+- **updatedAt**: Date
+
+
+## API Routes
+
+```bash
+api/
+|-- auth/
+|   |-- [...nextauth].ts
+|
+|-- blogs/
+|   |-- route.ts
+|   |-- [id]/
+|       |-- route.ts
+|   |-- comments/
+|       |-- route.ts
+|   |-- tags/
+|       |-- route.ts
+|       |-- [tag]/
+|           |-- route.ts
+|
+|-- user/
+|   |-- route.ts
+```
+
+
+
 
 ## Deploy on Vercel
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
