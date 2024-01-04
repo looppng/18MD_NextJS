@@ -6,7 +6,7 @@ import React, { useState } from "react";
 import Button from "@/app/components/Button/Button";
 import { TagType } from "@/app/adminPanel/createBlog/page";
 
-const EditForm = ({ blogInfo, tags }) => {
+const EditForm = ({ blogInfo, tags }: { blogInfo: any,  tags: any}) => {
   const router = useRouter();
 
   const [title, setTitle] = useState(blogInfo.blog.title);
