@@ -7,14 +7,6 @@ import Comment from "../../../../../libs/models/Comment";
 type ParamsType = {
   id: string;
 };
-
-type NewParamsType = {
-  id: string;
-  title: string;
-  content: string;
-  tag: string;
-};
-
 export const dynamic = "force-dynamic";
 
 export async function GET(
@@ -57,7 +49,7 @@ export async function DELETE(
   try {
     const { id } = params;
     await connectMongoDB();
-    const objectId = new ObjectId(id);
+    new ObjectId(id);
 
     if (!id) {
       return NextResponse.json({ message: "Invalid blog ID" }, { status: 400 });

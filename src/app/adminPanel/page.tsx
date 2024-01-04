@@ -9,17 +9,15 @@ const adminPanel = async () => {
 
   return (
     <div>
-      <div>Hi, {session?.user.username ?? "friend"}</div>
-      <div>
-        <h4>To view all blogs as admin:</h4>
-        <Link href={"/adminPanel/Blogs"} className={style.link}>
-          Blogs
+      <h3 className={style.header}>Hi, {session?.user.username ?? "friend"}</h3>
+      <nav className={style.nav}>
+        <Link href={"/adminPanel/Blogs"} className={style.navLink}>
+          All Blogs and their comments
         </Link>
-        <h4>To create a blog as admin:</h4>
-        <Link href={"/adminPanel/createBlog"} className={style.link}>
-          Create
+        <Link href={"/adminPanel/createBlog"} className={style.navLink}>
+          Create a new blog
         </Link>
-      </div>
+      </nav>
     </div>
   );
 };

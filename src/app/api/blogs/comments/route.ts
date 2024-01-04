@@ -1,6 +1,6 @@
 import connectMongoDB from "../../../../../libs/mongo/mongodb";
 import Comment from "../../../../../libs/models/Comment";
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
 export const dynamic = "force-dynamic";
 export async function POST(request: Request) {

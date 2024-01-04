@@ -24,7 +24,11 @@ const DeleteButton = ({ blogId }: DeleteType) => {
     }
   };
 
-  return <button onClick={handleDelete}>Delete</button>;
+  return (
+    <button onClick={handleDelete} className="btn btn-danger">
+      Delete
+    </button>
+  );
 };
 
 export default DeleteButton;

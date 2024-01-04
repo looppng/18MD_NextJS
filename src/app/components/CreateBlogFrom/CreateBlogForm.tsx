@@ -1,16 +1,12 @@
 "use client";
 
 import style from "./CreateBlogFrom.module.css";
-import TinyMCEEditor from "@/app/components/TinyMCEEditor/TinyMCEEditor";
-
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import Button from "@/app/components/Button/Button";
-import Link from "next/link";
-import DeleteButton from "@/app/components/DeleteButton/DeleteButton";
-import { BlogType } from "@/app/components/AdminBlogs/BlogListA";
 import { TagType } from "@/app/adminPanel/createBlog/page";
-const CreateForm = ({ tags }) => {
+
+const CreateForm = ({ tags }: any) => {
   const router = useRouter();
 
   const [title, setTitle] = useState("");
@@ -73,7 +69,6 @@ const CreateForm = ({ tags }) => {
               </label>
             </div>
             <div className="col-8">
-              {/*<TinyMCEEditor />*/}
               <textarea
                 required
                 onChange={(e) => setContent(e.target.value)}
@@ -86,7 +81,7 @@ const CreateForm = ({ tags }) => {
                 <span>Tag:</span>
               </label>
             </div>
-            <div className="col-8">
+            <div className="col-8 mb-2">
               <select
                 className={style.select}
                 required
@@ -95,7 +90,7 @@ const CreateForm = ({ tags }) => {
                 value={tag}
               >
                 {tags.map((t: TagType) => (
-                  <option key={t._id} value={t.tag}>
+                  <option key={t._id} value={t.tag} className={style.option}>
                     {t.tag}
                   </option>
                 ))}

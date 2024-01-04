@@ -1,4 +1,5 @@
 import CreateBlogForm from "@/app/components/CreateBlogFrom/CreateBlogForm";
+import style from "@/app/components/Navbar/navbar.module.css";
 import React from "react";
 import Link from "next/link";
 
@@ -7,10 +8,6 @@ const getTags = async () => {
     const res = await fetch("http://localhost:3000/api/blogs/tags", {
       cache: "no-store",
     });
-
-    if (!res.ok) {
-      throw new Error("Failed to fetch tags");
-    }
 
     return res.json();
   } catch (error) {
@@ -28,8 +25,10 @@ const CreateBlog = async () => {
 
   return (
     <div>
-      <Link href="/adminPanel">Admin Home</Link>
       <CreateBlogForm tags={tags} />
+      <Link href={"/adminPanel"} className={style.navLink}>
+        <h5 className="mt-4">Back to Admin Home</h5>
+      </Link>
     </div>
   );
 };

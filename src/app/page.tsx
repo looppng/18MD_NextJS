@@ -1,10 +1,21 @@
 import Link from "next/link";
 import Button from "@/app/components/Button/Button";
+import Image from "next/image";
+import travel from "../../public/travel.jpg";
 export default function Home() {
   return (
     <main>
       <div>
-        <h2 className="heading">Welcome to my blogs website</h2>
+        <h2 className="heading mb-3 text-center">
+          Welcome to my blogs website
+        </h2>
+        <Image
+          src={travel}
+          alt="blog"
+          width={600}
+          height={400}
+          className="rounded mx-auto d-block"
+        />
         <p className="paragraph">
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium,
           aliquid at cum dolor ea iste libero maiores molestias nam nulla,

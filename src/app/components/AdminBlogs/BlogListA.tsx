@@ -11,10 +11,6 @@ const getBlogs = async () => {
       cache: "no-store",
     });
 
-    if (!res.ok) {
-      throw new Error("Failed to fetch blogs");
-    }
-
     return res.json();
   } catch (error) {
     console.log("Error loading blogs: ", error);
@@ -46,15 +42,17 @@ const BlogList = async () => {
           <Link href={`/Blogs/Tags/${blog.tag}`}>
             <span className={style.pill}>{blog.tag}</span>
           </Link>
-          <DeleteButton blogId={blog._id} />
-          <button>
-            <Link
-              href={`/adminPanel/editBlog/${blog._id}`}
-              className={style.link}
-            >
-              Edit
-            </Link>
-          </button>
+          <div className={style.action}>
+            <DeleteButton blogId={blog._id} />
+            <button className="btn btn-warning">
+              <Link
+                href={`/adminPanel/editBlog/${blog._id}`}
+                className={style.link}
+              >
+                Edit
+              </Link>
+            </button>
+          </div>
         </div>
       ))}
       {blogs.length === 0 && <p>There are no available blogs...</p>}

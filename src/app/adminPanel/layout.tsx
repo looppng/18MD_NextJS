@@ -5,11 +5,8 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { redirect } from "next/navigation";
 
 // Styles
-import { Ubuntu } from "next/font/google";
-import "./globals.css";
+import "../../app/globals.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-
-const ubuntu = Ubuntu({ subsets: ["latin"], weight: ["700"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -27,5 +24,5 @@ export default async function AdminPanelLayout({
     redirect("/api/auth/signin?callbackUrl=/adminPanel");
   }
 
-  return <div className="container">{children}</div>;
+  return <>{children}</>;
 }

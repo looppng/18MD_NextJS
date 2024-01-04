@@ -6,13 +6,9 @@ import EditBlogForm from "@/app/components/EditBlogForm/EditBlogForm";
 
 const getBlog = async () => {
   try {
-    const res = await fetch(`http://localhost:3000/api/blogs/${_id}`, {
+    const res = await fetch(`http://localhost:3000/api/blogs/id`, {
       cache: "no-store",
     });
-
-    if (!res.ok) {
-      throw new Error("Failed to fetch tags");
-    }
 
     return res.json();
   } catch (error) {
@@ -26,10 +22,6 @@ const getTags = async () => {
       cache: "no-store",
     });
 
-    if (!res.ok) {
-      throw new Error("Failed to fetch tags");
-    }
-
     return res.json();
   } catch (error) {
     console.log("Error loading tags: ", error);
@@ -41,7 +33,7 @@ const EditBlog = async () => {
 
   return (
     <div>
-      <Link href="/adminPanel">Admin Home</Link>
+      <Link href={"/adminPanel"}>Admin Home</Link>
       <EditBlogForm tags={tags} />
     </div>
   );

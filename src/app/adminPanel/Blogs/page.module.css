@@ -16,3 +16,16 @@
     margin: 1rem 0 3rem 2rem ;
     font-size: 18px;
 }
+
+.navLink {
+    text-decoration: none;
+    color: rgba(14, 13, 13, 0.95);
+    font-weight: bold;
+    font-size: 22px;
+    transition: 0.5s;
+    margin-top: 1rem;
+}
+
+.navLink:hover {
+    color: rebeccapurple;
+}

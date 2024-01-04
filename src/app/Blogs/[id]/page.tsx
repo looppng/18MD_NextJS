@@ -2,6 +2,8 @@ import style from "@/app/components/BlogList/bloglist.module.css";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import CreateForm from "@/app/components/CreateForm/CreateForm";
+import winter from "../../../../public/winter.jpg";
+import Image from "next/image";
 
 type CommentType = {
   _id: string;
@@ -15,10 +17,6 @@ const getBlog = async (id: string) => {
     const res = await fetch(`http://localhost:3000/api/blogs/${id}`, {
       cache: "no-store",
     });
-
-    if (!res.ok) {
-      throw new Error("Failed to fetch blog");
-    }
 
     const Datas = await res.json();
 
@@ -39,6 +37,13 @@ const BlogDetails = async ({ params: { id } }: { params: { id: string } }) => {
   return (
     <div className="mt-5">
       <main className={style.card}>
+        <Image
+          src={winter}
+          alt="blog"
+          width={600}
+          height={300}
+          className="rounded mx-auto d-block"
+        />
         <h3 className={style.heading}>{blogInfo.blog.title}</h3>
         <p className={style.content}>{blogInfo.blog.content}</p>
         <Link href={`/Blogs/Tags/${blogInfo.blog.tag}`}>

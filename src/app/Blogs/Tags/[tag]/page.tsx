@@ -14,10 +14,6 @@ const getTag = async (tag: string) => {
       cache: "no-store",
     });
 
-    if (!res.ok) {
-      throw new Error("Failed to fetch blogs with this tag");
-    }
-
     const data = await res.json();
     const { blogsWithTag } = data;
     return blogsWithTag;

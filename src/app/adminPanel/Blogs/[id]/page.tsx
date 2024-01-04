@@ -18,16 +18,13 @@ const getBlog = async (id: string) => {
       cache: "no-store",
     });
 
-    if (!res.ok) {
-      throw new Error("Failed to fetch blog");
-    }
+    const Data = await res.json();
 
-    const Datas = await res.json();
-
-    const { blog, comments } = Datas;
+    const { blog, comments } = Data;
     return { blog, comments };
   } catch (error) {
-    console.log("Error loading blog: ", error);
+    console.error("Error loading blog: ", error);
+    throw error;
   }
 };
 

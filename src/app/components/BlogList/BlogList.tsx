@@ -2,16 +2,11 @@
 
 import style from "./bloglist.module.css";
 import Link from "next/link";
-import DeleteButton from "@/app/components/DeleteButton/DeleteButton";
 const getBlogs = async () => {
   try {
     const res = await fetch("http://localhost:3000/api/blogs", {
       cache: "no-store",
     });
-
-    if (!res.ok) {
-      throw new Error("Failed to fetch blogs");
-    }
 
     return res.json();
   } catch (error) {

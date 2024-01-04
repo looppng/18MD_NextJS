@@ -28,3 +28,13 @@
     border: 1px solid #ccc;
     border-radius: 4px;
 }
+
+.select {
+    padding: 0.3rem;
+}
+
+.option {
+    background-color: #f0f0f0;
+    color: #333;
+    padding: 0.3rem;
+}
