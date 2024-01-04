@@ -4,15 +4,18 @@ import React from "react";
 import Link from "next/link";
 import EditBlogForm from "@/app/components/EditBlogForm/EditBlogForm";
 
-const getBlog = async () => {
+const getBlog = async (id: string) => {
   try {
-    const res = await fetch(`http://localhost:3000/api/blogs/id`, {
+    const res = await fetch(`http://localhost:3000/api/blogs/${id}`, {
       cache: "no-store",
     });
 
-    return res.json();
+    const Datas = await res.json();
+
+    const { blog } = Datas;
+    return { blog };
   } catch (error) {
-    console.log("Error loading tags: ", error);
+    console.log("Error loading blog: ", error);
   }
 };
 
@@ -28,13 +31,14 @@ const getTags = async () => {
   }
 };
 
-const EditBlog = async () => {
+const EditBlog = async ({ params: { id } }: { params: { id: string } }) => {
   const tags = await getTags();
+  const blogInfo = await getBlog(id);
 
   return (
     <div>
       <Link href={"/adminPanel"}>Admin Home</Link>
-      <EditBlogForm tags={tags} />
+      <EditBlogForm blogInfo={blogInfo} tags={tags} />
     </div>
   );
 };

@@ -1,6 +1,18 @@
 import connectMongoDB from "../../../../libs/mongo/mongodb";
 import Blog from "../../../../libs/models/Blog";
 import { NextRequest, NextResponse } from "next/server";
+import { ObjectId } from "mongodb";
+
+type BlogUpdateType = {
+  blogId: string;
+  title: string;
+  content: string;
+  tag: string;
+};
+
+type ParamsType = {
+  id: string;
+};
 
 export const dynamic = "force-dynamic";
 export async function POST(request: Request) {
@@ -14,7 +26,9 @@ export async function POST(request: Request) {
 
 export async function GET() {
   await connectMongoDB();
-  const blogs = await Blog.find();
+  const blogs = await Blog.find().sort({
+    createdAt: -1,
+  });
   return NextResponse.json({ blogs });
 }
 

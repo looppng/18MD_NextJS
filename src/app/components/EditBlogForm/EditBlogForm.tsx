@@ -1,16 +1,20 @@
 "use client";
+
 import style from "./EditBlogForm.module.css";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import Button from "@/app/components/Button/Button";
 import { TagType } from "@/app/adminPanel/createBlog/page";
-const EditForm = ({ tags }: any) => {
+
+const EditForm = ({ blogInfo, tags }) => {
   const router = useRouter();
 
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
+  const [title, setTitle] = useState(blogInfo.blog.title);
+  const [content, setContent] = useState(blogInfo.blog.content);
   const [isLoading, setIsLoading] = useState(false);
-  const [tag, setTag] = useState(tags[0].tag);
+  const [tag, setTag] = useState(blogInfo.blog.tag);
+  const [blogId, setBlogId] = useState(blogInfo.blog._id);
+  const [image, setImage] = useState(blogInfo.blog.image);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -20,11 +24,12 @@ const EditForm = ({ tags }: any) => {
       title,
       content,
       tag,
+      image,
     };
 
-    const res = await fetch("http://localhost:3000/api/blogs", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
+    const res = await fetch(`http://localhost:3000/api/blogs/${blogId}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json-patch+json" },
       body: JSON.stringify(submitBlog),
     });
 
@@ -67,7 +72,6 @@ const EditForm = ({ tags }: any) => {
               </label>
             </div>
             <div className="col-8">
-              {/*<TinyMCEEditor />*/}
               <textarea
                 required
                 onChange={(e) => setContent(e.target.value)}
@@ -95,10 +99,23 @@ const EditForm = ({ tags }: any) => {
                 ))}
               </select>
             </div>
+            <div className="col-4">
+              <label className={style.label}>
+                <span>Image Url:</span>
+              </label>
+            </div>
+            <div className="col-8">
+              <input
+                type="text"
+                onChange={(e) => setImage(e.target.value)}
+                value={image}
+                className={style.input}
+              />
+            </div>
             <div className="row">
               <div className="col-4 mt-3">
                 <Button
-                  text="Add Blog"
+                  text="Save"
                   type={"submit"}
                   disabled={isLoading}
                   onSubmit={() => handleSubmit}

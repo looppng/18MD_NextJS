@@ -2,6 +2,7 @@
 
 import style from "./bloglist.module.css";
 import Link from "next/link";
+
 const getBlogs = async () => {
   try {
     const res = await fetch("http://localhost:3000/api/blogs", {
@@ -19,6 +20,7 @@ export type BlogType = {
   title: string;
   content: string;
   tag: string;
+  image: string;
 };
 
 const BlogList = async () => {
@@ -28,6 +30,22 @@ const BlogList = async () => {
     <>
       {blogs.map((blog: BlogType) => (
         <div key={blog._id} className={style.card}>
+          {/*<Image*/}
+          {/*  src={blog.image}*/}
+          {/*  alt="blog image"*/}
+          {/*  width={50}*/}
+          {/*  height={50}*/}
+          {/*  quality={100}*/}
+          {/*/>*/}
+          <Link href={`/Blogs/${blog._id}`}>
+            <img
+              src={blog.image}
+              alt="blogimg"
+              className="img-thumbnail mb-3"
+              width={400}
+              height={200}
+            />
+          </Link>
           <Link href={`/Blogs/${blog._id}`} className={style.link}>
             <h3 className={style.heading}>{blog.title}</h3>
             <p className={style.content}>{blog.content}</p>

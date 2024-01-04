@@ -57,6 +57,7 @@ const CreateForm = ({ blogId }: { blogId: string }) => {
                 required
                 onChange={(e) => setAuthor(e.target.value)}
                 value={author}
+                placeholder="John Doe"
                 className={style.input}
               />
             </div>
@@ -70,6 +71,7 @@ const CreateForm = ({ blogId }: { blogId: string }) => {
                 required
                 onChange={(e) => setComment(e.target.value)}
                 value={comment}
+                placeholder="Express yourself..."
                 className={style.textarea}
               />
             </div>

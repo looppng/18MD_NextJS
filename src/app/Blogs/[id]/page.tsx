@@ -2,8 +2,7 @@ import style from "@/app/components/BlogList/bloglist.module.css";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import CreateForm from "@/app/components/CreateForm/CreateForm";
-import winter from "../../../../public/winter.jpg";
-import Image from "next/image";
+import blog from "../../../../libs/models/Blog";
 
 type CommentType = {
   _id: string;
@@ -37,12 +36,12 @@ const BlogDetails = async ({ params: { id } }: { params: { id: string } }) => {
   return (
     <div className="mt-5">
       <main className={style.card}>
-        <Image
-          src={winter}
-          alt="blog"
-          width={600}
-          height={300}
-          className="rounded mx-auto d-block"
+        <img
+          src={blogInfo.blog.image}
+          alt="blogimg"
+          className="img-thumbnail mb-3"
+          width={400}
+          height={200}
         />
         <h3 className={style.heading}>{blogInfo.blog.title}</h3>
         <p className={style.content}>{blogInfo.blog.content}</p>

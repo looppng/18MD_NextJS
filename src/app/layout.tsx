@@ -25,12 +25,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${ubuntu.className}` + "bg-light"}>
-        <Provider>
-          <main className="container">
+        <main className="container">
+          <Provider>
             <Navbar />
             <section>{children}</section>
-          </main>
-        </Provider>
+          </Provider>
+        </main>
       </body>
     </html>
   );

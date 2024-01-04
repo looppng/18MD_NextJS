@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import Button from "@/app/components/Button/Button";
 import { TagType } from "@/app/adminPanel/createBlog/page";
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
 const CreateForm = ({ tags }: any) => {
   const router = useRouter();
@@ -13,6 +14,7 @@ const CreateForm = ({ tags }: any) => {
   const [content, setContent] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [tag, setTag] = useState(tags[0].tag);
+  const [image, setImage] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -22,6 +24,7 @@ const CreateForm = ({ tags }: any) => {
       title,
       content,
       tag,
+      image,
     };
 
     const res = await fetch("http://localhost:3000/api/blogs", {
@@ -73,7 +76,7 @@ const CreateForm = ({ tags }: any) => {
                 required
                 onChange={(e) => setContent(e.target.value)}
                 value={content}
-                className={style.textarea}
+                className={style.input}
               />
             </div>
             <div className="col-4">
@@ -95,6 +98,19 @@ const CreateForm = ({ tags }: any) => {
                   </option>
                 ))}
               </select>
+            </div>
+            <div className="col-4">
+              <label className={style.label}>
+                <span>Image url (optional):</span>
+              </label>
+            </div>
+            <div className="col-8">
+              <input
+                type="text"
+                onChange={(e) => setImage(e.target.value)}
+                value={image}
+                className={style.input}
+              />
             </div>
             <div className="row">
               <div className="col-4 mt-3">
