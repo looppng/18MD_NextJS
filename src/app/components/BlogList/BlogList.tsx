@@ -30,29 +30,28 @@ const BlogList = async () => {
     <>
       {blogs.map((blog: BlogType) => (
         <div key={blog._id} className={style.card}>
-          {/*<Image*/}
-          {/*  src={blog.image}*/}
-          {/*  alt="blog image"*/}
-          {/*  width={50}*/}
-          {/*  height={50}*/}
-          {/*  quality={100}*/}
-          {/*/>*/}
-          <Link href={`/Blogs/${blog._id}`}>
-            <img
-              src={blog.image}
-              alt="blogimg"
-              className="img-thumbnail mb-3"
-              width={400}
-              height={200}
-            />
-          </Link>
-          <Link href={`/Blogs/${blog._id}`} className={style.link}>
-            <h3 className={style.heading}>{blog.title}</h3>
-            <p className={style.content}>{blog.content}</p>
-          </Link>
-          <Link href={`/Blogs/Tags/${blog.tag}`}>
-            <span className={style.pill}>{blog.tag}</span>
-          </Link>
+          <div className={style.imageSide}>
+            <Link href={`/Blogs/${blog._id}`}>
+              <img
+                src={blog.image}
+                alt="blogimg"
+                className="img-thumbnail mb-3"
+                width={600}
+                height={300}
+              />
+            </Link>
+          </div>
+          <div className={style.cardSide}>
+            <Link href={`/Blogs/${blog._id}`} className={style.link}>
+              <h3 className={style.heading}>{blog.title}</h3>
+              <p className={style.content}>{blog.content}</p>
+            </Link>
+            {blog.tag.split(",").map((tag: string, index: number) => (
+              <Link key={index} href={`/Blogs/Tags/${tag.trim()}`}>
+                <span className={style.pill}>{tag.trim()}</span>
+              </Link>
+            ))}
+          </div>
         </div>
       ))}
       {blogs.length === 0 && <p>There are no available blogs...</p>}

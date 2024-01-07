@@ -6,6 +6,7 @@ import React, { useState } from "react";
 import Button from "@/app/components/Button/Button";
 import { TagType } from "@/app/adminPanel/createBlog/page";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import ReactQuill from "react-quill";
 
 const CreateForm = ({ tags }: any) => {
   const router = useRouter();
@@ -13,9 +14,13 @@ const CreateForm = ({ tags }: any) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [tag, setTag] = useState(tags[0].tag);
+  const [tag, setTag] = useState("");
+  const [isInputVisible, setIsInputVisible] = useState(false);
   const [image, setImage] = useState("");
 
+  const handleButton = () => {
+    setIsInputVisible(!isInputVisible);
+  };
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
@@ -40,7 +45,7 @@ const CreateForm = ({ tags }: any) => {
 
       setIsLoading(false);
 
-      router.push(`/Blogs`);
+      router.push(`/adminPanel/Blogs`);
       router.refresh();
     } else {
       setIsLoading(false);
@@ -76,7 +81,7 @@ const CreateForm = ({ tags }: any) => {
                 required
                 onChange={(e) => setContent(e.target.value)}
                 value={content}
-                className={style.input}
+                className={style.textarea}
               />
             </div>
             <div className="col-4">
@@ -86,7 +91,9 @@ const CreateForm = ({ tags }: any) => {
             </div>
             <div className="col-8 mb-2">
               <select
-                className={style.select}
+                className={`${style.select} ${
+                  isInputVisible ? style.hide : style.show
+                } + mb-3`}
                 required
                 onChange={(e) => setTag(e.target.value)}
                 name="tag"
@@ -98,6 +105,20 @@ const CreateForm = ({ tags }: any) => {
                   </option>
                 ))}
               </select>
+              <input
+                type="text"
+                onChange={(e) => setTag(e.target.value)}
+                value={tag}
+                className={`${style.input} ${
+                  isInputVisible ? style.show : style.hide
+                } + mb-3`}
+              />
+              <Button
+                text={`${isInputVisible ? "Use existing" : "Add new tag"}`}
+                type="button"
+                onClick={handleButton}
+                disabled={isLoading}
+              />
             </div>
             <div className="col-4">
               <label className={style.label}>

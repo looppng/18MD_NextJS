@@ -1,8 +1,8 @@
-import style from "@/app/components/BlogList/bloglist.module.css";
+import style from "./page.module.css";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import CreateForm from "@/app/components/CreateForm/CreateForm";
-import blog from "../../../../libs/models/Blog";
+import Image from "next/image";
 
 type CommentType = {
   _id: string;
@@ -36,7 +36,7 @@ const BlogDetails = async ({ params: { id } }: { params: { id: string } }) => {
   return (
     <div className="mt-5">
       <main className={style.card}>
-        <img
+        <Image
           src={blogInfo.blog.image}
           alt="blogimg"
           className="img-thumbnail mb-3"

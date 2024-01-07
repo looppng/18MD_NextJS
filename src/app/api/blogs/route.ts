@@ -1,18 +1,7 @@
 import connectMongoDB from "../../../../libs/mongo/mongodb";
 import Blog from "../../../../libs/models/Blog";
 import { NextRequest, NextResponse } from "next/server";
-import { ObjectId } from "mongodb";
-
-type BlogUpdateType = {
-  blogId: string;
-  title: string;
-  content: string;
-  tag: string;
-};
-
-type ParamsType = {
-  id: string;
-};
+import TagModel from "../../../../libs/models/Tag";
 
 export const dynamic = "force-dynamic";
 export async function POST(request: Request) {
@@ -20,8 +9,29 @@ export async function POST(request: Request) {
 
   await connectMongoDB();
 
-  await Blog.create({ title, content, tag, image });
-  return NextResponse.json({ message: "blog created" }, { status: 201 });
+  const tags = tag.split(",").map((tg: string) => tg.trim());
+
+  try {
+    const existingTags = await TagModel.find({ tag: { $in: tags } });
+
+    const existingTagNames = existingTags.map((existingTag) => existingTag.tag);
+
+    const newTags = tags.filter((tg) => !existingTagNames.includes(tg));
+
+    for (const tg of newTags) {
+      await TagModel.create({ tag: tg });
+    }
+
+    await Blog.create({ title, content, tag, image });
+
+    return NextResponse.json({ message: "Blog created" }, { status: 201 });
+  } catch (error) {
+    console.error("Error:", error);
+    return NextResponse.json(
+      { message: "Internal server error" },
+      { status: 500 },
+    );
+  }
 }
 
 export async function GET() {

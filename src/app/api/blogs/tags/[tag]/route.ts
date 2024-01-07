@@ -23,7 +23,9 @@ export async function GET(
       return NextResponse.json({ message: "Tag not found" }, { status: 404 });
     }
 
-    const blogsWithTag = await BlogModel.find({ tag: tagDocument.tag });
+    const blogsWithTag = await BlogModel.find({
+      tag: { $regex: tagDocument.tag, $options: "i" },
+    });
 
     return NextResponse.json({ blogsWithTag });
   } catch (error) {

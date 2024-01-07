@@ -6,15 +6,16 @@ import React, { useState } from "react";
 import Button from "@/app/components/Button/Button";
 import { TagType } from "@/app/adminPanel/createBlog/page";
 
-const EditForm = ({ blogInfo, tags }: { blogInfo: any,  tags: any}) => {
+const EditForm = ({ blogInfo, tags }: { blogInfo: any; tags: TagType[] }) => {
   const router = useRouter();
 
   const [title, setTitle] = useState(blogInfo.blog.title);
   const [content, setContent] = useState(blogInfo.blog.content);
   const [isLoading, setIsLoading] = useState(false);
   const [tag, setTag] = useState(blogInfo.blog.tag);
-  const [blogId, setBlogId] = useState(blogInfo.blog._id);
+  const [blogId, _setBlogId] = useState(blogInfo.blog._id);
   const [image, setImage] = useState(blogInfo.blog.image);
+  const [isInputVisible, setIsInputVisible] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -40,7 +41,7 @@ const EditForm = ({ blogInfo, tags }: { blogInfo: any,  tags: any}) => {
 
       setIsLoading(false);
 
-      router.push(`/Blogs`);
+      router.push(`/adminPanel/Blogs`);
       router.refresh();
     } else {
       setIsLoading(false);
@@ -84,20 +85,36 @@ const EditForm = ({ blogInfo, tags }: { blogInfo: any,  tags: any}) => {
                 <span>Tag:</span>
               </label>
             </div>
-            <div className="col-8">
+            <div className="col-8 mb-2">
               <select
-                className={style.select}
+                className={`${style.select} ${
+                  isInputVisible ? style.hide : style.show
+                } + mb-3`}
                 required
                 onChange={(e) => setTag(e.target.value)}
                 name="tag"
                 value={tag}
               >
                 {tags.map((t: TagType) => (
-                  <option key={t._id} value={t.tag}>
+                  <option key={t._id} value={t.tag} className={style.option}>
                     {t.tag}
                   </option>
                 ))}
               </select>
+              <input
+                type="text"
+                onChange={(e) => setTag(e.target.value)}
+                value={tag}
+                className={`${style.input} ${
+                  isInputVisible ? style.show : style.hide
+                } + mb-3`}
+              />
+              <Button
+                text={`${isInputVisible ? "Use existing" : "Add new tag"}`}
+                type="button"
+                onClick={() => setIsInputVisible(!isInputVisible)}
+                disabled={isLoading}
+              />
             </div>
             <div className="col-4">
               <label className={style.label}>

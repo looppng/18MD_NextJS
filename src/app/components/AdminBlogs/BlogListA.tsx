@@ -22,6 +22,7 @@ export type BlogType = {
   title: string;
   content: string;
   tag: string;
+  image: string;
 };
 
 const BlogList = async () => {
@@ -35,23 +36,36 @@ const BlogList = async () => {
     <>
       {blogs.map((blog: BlogType) => (
         <div key={blog._id} className={style.card}>
-          <Link href={`/adminPanel/Blogs/${blog._id}`} className={style.link}>
-            <h3 className={style.heading}>{blog.title}</h3>
-            <p className={style.content}>{blog.content}</p>
-          </Link>
-          <Link href={`/Blogs/Tags/${blog.tag}`}>
-            <span className={style.pill}>{blog.tag}</span>
-          </Link>
-          <div className={style.action}>
-            <DeleteButton blogId={blog._id} />
-            <button className="btn btn-warning">
-              <Link
-                href={`/adminPanel/editBlog/${blog._id}`}
-                className={style.link}
-              >
-                Edit
+          <div className={style.imageSide}>
+            <img
+              src={blog.image}
+              alt="blogimg"
+              className="img-thumbnail mb-3"
+              width={600}
+              height={300}
+            />
+          </div>
+          <div className={style.cardSide}>
+            <Link href={`/adminPanel/Blogs/${blog._id}`} className={style.link}>
+              <h3 className={style.heading}>{blog.title}</h3>
+              <p className={style.content}>{blog.content}</p>
+            </Link>
+            {blog.tag.split(",").map((tag: string, index: number) => (
+              <Link key={index} href={`/Blogs/Tags/${tag.trim()}`}>
+                <span className={style.pill}>{tag.trim()}</span>
               </Link>
-            </button>
+            ))}
+            <div className={style.action}>
+              <DeleteButton blogId={blog._id} />
+              <button className="btn btn-warning">
+                <Link
+                  href={`/adminPanel/editBlog/${blog._id}`}
+                  className={style.link}
+                >
+                  Edit
+                </Link>
+              </button>
+            </div>
           </div>
         </div>
       ))}

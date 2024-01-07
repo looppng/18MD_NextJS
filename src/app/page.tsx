@@ -12,8 +12,8 @@ export default function Home() {
         <Image
           src={travel}
           alt="blog"
-          width={600}
-          height={400}
+          width={800}
+          height={500}
           className="rounded mx-auto d-block mt-5"
         />
         <div className="action">
@@ -24,7 +24,7 @@ export default function Home() {
       </div>
 
       <div className="mb-5">
-        <h2 className="heading text-center mb-5">Updates from bloggers</h2>
+        <h2 className="heading text-center mb-3">Updates from bloggers</h2>
         <div className="row">
           <p className="paragraph col-sm">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit.

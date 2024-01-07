@@ -38,3 +38,11 @@
     color: #333;
     padding: 0.3rem;
 }
+
+.show {
+    display: block;
+}
+
+.hide {
+    display: none;
+}
